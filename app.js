@@ -70,6 +70,36 @@ app.post('/api/v1/tours', (req, res) => {
   );
 });
 
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (Number(req.params.id) > tours.length) {
+    return res.status(404).json({
+      status: 'Fail',
+      message: 'Wrong Id',
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<updated TOUR here>',
+    },
+  });
+});
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+  if (Number(req.params.id) > tours.length) {
+    return res.status(404).json({
+      status: 'Fail',
+      message: 'Wrong Id',
+    });
+  }
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.....`);
 });
